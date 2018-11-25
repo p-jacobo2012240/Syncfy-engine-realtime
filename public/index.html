@@ -9,6 +9,17 @@
 <body>
     
     <p>Hola :)</p>
+    <script src="socket.io/socket.io.js" ></script>
+        
+    <script>
+        
+        const socket = io();
+        
+        socket.on('connect', ()=>{
+            console.log('Socket Up')
+        })
 
+
+    </script>
 </body>
 </html>
