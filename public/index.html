@@ -28,6 +28,10 @@
             message: 'Hola devs'
         })
 
+        socket.on('sendMessage', (res)=>{
+            console.log('Servidor Dice:', res )
+        })
+
     </script>
 </body>
 </html>

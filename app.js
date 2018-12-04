@@ -20,6 +20,11 @@ io.on('connection', (client)=>{
     
     console.log('Usuario Activo')
 
+    client.emit('sendMessage', {
+        user: 'Admin',
+        message: 'Bienvenido a la aplicacion'
+    })
+
     client.on('disconnect', ()=>{
         console.log('Usuario offLine')
     })
