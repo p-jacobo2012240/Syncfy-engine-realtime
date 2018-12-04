@@ -20,6 +20,14 @@ io.on('connection', (client)=>{
     
     console.log('Usuario Activo')
 
+    client.on('disconnect', ()=>{
+        console.log('Usuario offLine')
+    })
+
+    client.on('sendMessage', (message)=>{
+        console.log(message)
+    })
+
 })
 
 server.listen(process.env.PORT, ()=>{

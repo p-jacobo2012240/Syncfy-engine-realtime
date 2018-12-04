@@ -19,6 +19,14 @@
             console.log('Socket Up')
         })
 
+        socket.on('disconnect', ()=>{
+            console.log('Se perdio la conexion')
+        })
+        
+        socket.emit('sendMessage', {
+            user: 'Hackobo',
+            message: 'Hola devs'
+        })
 
     </script>
 </body>
