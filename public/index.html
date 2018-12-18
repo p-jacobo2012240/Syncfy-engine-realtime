@@ -26,6 +26,8 @@
         socket.emit('sendMessage', {
             user: 'Hackobo',
             message: 'Hola devs'
+        }, (res)=>{
+            console.log('el servidor dice', res)
         })
 
         socket.on('sendMessage', (res)=>{
