@@ -13,9 +13,12 @@ io.on('connection', (client)=>{
         console.log('Usuario offLine')
     })
 
-    client.on('sendMessage', (message, callback)=>{
+    client.on('sendMessage', (data, callback)=>{
         
-        if(message.user){
+        console.log(data)
+        client.broadcast.emit('sendMessage', data)
+
+        /*if(message.user){
             callback({
                 res: 'Todo ha ido bien'
             })
@@ -23,7 +26,7 @@ io.on('connection', (client)=>{
             callback({
                 res: `no se ha enviado ${message.usuario}`
             })
-        }
+        }*/
 
     })
 
