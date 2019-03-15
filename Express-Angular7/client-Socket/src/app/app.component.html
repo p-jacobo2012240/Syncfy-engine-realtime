@@ -1,0 +1,9 @@
+<h1> HOLA A TODOSS </h1>
+
+<div *ngFor="let message of messages">
+  {{message}}
+</div>
+
+
+<input [(ngModel)]="message"/>
+<button (click)="sendMessage()">Send</button>
