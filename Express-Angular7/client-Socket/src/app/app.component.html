@@ -7,3 +7,11 @@
 
 <input [(ngModel)]="message"/>
 <button (click)="sendMessage()">Send</button>
+
+
+
+<h1>ESTO PARA ABAJO ES lo que viene del API</h1>
+
+<ul *ngFor="let user of users" >
+  <li> {{ user.nombre }} </li>
+</ul>

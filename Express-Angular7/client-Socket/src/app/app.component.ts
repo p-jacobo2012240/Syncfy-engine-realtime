@@ -20,6 +20,7 @@ export class AppComponent {
   zone:any;
   socket:any;
 
+  //datos del API
   users : any[] = []
 
   constructor(private _skServie : SocketService ){
@@ -45,11 +46,11 @@ export class AppComponent {
   }
 
   getUsers(){
-    /*this._skServie.getUsers().subscribe( (data: any )=>{
+    this._skServie.getUsers().subscribe( (data: any )=>{
 
       this.users = data
       console.log(data)
-    })*/
+    })
   }
 
   ngOnInit() {
