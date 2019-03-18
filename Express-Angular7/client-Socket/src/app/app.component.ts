@@ -31,11 +31,9 @@ export class AppComponent {
       this.socketHost = "http://localhost:1234";
       this.socket = io(this.socketHost);
 
-      this.socket.on('realtime', (data)=>{
+      this.socket.on('twitter_post', (data)=>{
           this.getUsers();
       })
-
-
 
       
   }

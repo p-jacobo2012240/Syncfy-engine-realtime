@@ -38,6 +38,10 @@ io.on('connection', (socket) => {
         io.emit('realtime', data )
     })
 
+    socket.on("twitter_post", function(post){
+        io.emit("twitter_post", post);
+    })
+
 });
 
 server.listen(port, () => {

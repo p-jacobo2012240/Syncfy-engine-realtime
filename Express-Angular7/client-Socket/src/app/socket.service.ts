@@ -34,8 +34,8 @@ export class SocketService {
   }
 
   //Enviados desde el API
-  public getUsers() {
-    return this.http.get(`${this.usersURL}`)
+  public getUsers() : Observable<any> {
+    return this.http.get<any>(`${this.usersURL}`)
   } 
 
  
