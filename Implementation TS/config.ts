@@ -2,16 +2,11 @@
 
 class TestUsers{
 
-    host = '127.0.0.1';
-    user = 'superUser'
-    accessAllow = 'full'
+    uid: number
+    nickname :number
+    enabled : boolean
 
-
-    constructor(){
-        //replace 
-    }
-
-
-
+    constructor(){}
+    
 
 }
