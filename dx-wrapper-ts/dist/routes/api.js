@@ -9,8 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-let route = express_1.Router();
-route.get('/messages', (req, res) => __awaiter(this, void 0, void 0, function* () {
+let app = express_1.Router();
+app.get('/messages', (req, res) => __awaiter(this, void 0, void 0, function* () {
     try {
         let r = yield res.status(200).json({
             message: 'List Data',
@@ -21,7 +21,7 @@ route.get('/messages', (req, res) => __awaiter(this, void 0, void 0, function* (
         res.send({ error: `this error : ${e}` });
     }
 }));
-route.post('/messages', (req, res) => __awaiter(this, void 0, void 0, function* () {
+app.post('/messages', (req, res) => __awaiter(this, void 0, void 0, function* () {
     try {
         let h = yield res.status(201).json({
             message: 'Created',
@@ -32,4 +32,15 @@ route.post('/messages', (req, res) => __awaiter(this, void 0, void 0, function* 
         res.send({ error: `this error : ${e}` });
     }
 }));
-exports.default = route;
+app.post('/messages/:id', (req, res) => __awaiter(this, void 0, void 0, function* () {
+    try {
+        let hck = yield res.status(200).json({
+            message: `Send for id: ${req.params.id}`,
+            data: req.body
+        });
+    }
+    catch (e) {
+        res.send({ error: `this error : ${e}` });
+    }
+}));
+exports.default = app;
