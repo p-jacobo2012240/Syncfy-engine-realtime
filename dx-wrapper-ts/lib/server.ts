@@ -1,7 +1,6 @@
 import  express from 'express'
 import skIO from 'socket.io'
 import http from 'http'
-import { AnyAaaaRecord } from 'dns';
 
 export default class Server{
 
@@ -23,6 +22,8 @@ export default class Server{
     }
 
     private async poolConnections(){
+
+        console.log('activo')
 
         //getting pool connections
         let h = await this.io.on('connect', client =>{

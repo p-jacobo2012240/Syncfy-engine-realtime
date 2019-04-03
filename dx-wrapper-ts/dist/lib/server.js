@@ -26,6 +26,7 @@ class Server {
     }
     poolConnections() {
         return __awaiter(this, void 0, void 0, function* () {
+            console.log('activo');
             //getting pool connections
             let h = yield this.io.on('connect', client => {
                 console.log('new client connected');

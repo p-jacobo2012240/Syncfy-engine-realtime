@@ -4,7 +4,19 @@ import {
     Response } 
 from 'express'
 
+import Maps from '../lib/map';
+
 let app = Router();
+
+let map = new Maps()
+
+
+app.get('/map', async (req: Request, res: Response )=>{
+
+    let x = await res.json( map.getCoords() )
+
+})
+
 
 app.get('/messages',  async (req: Request, res: Response )=>{
         
