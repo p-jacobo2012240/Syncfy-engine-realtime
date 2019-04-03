@@ -18,6 +18,12 @@ let map = new map_1.default();
 app.get('/map', (req, res) => __awaiter(this, void 0, void 0, function* () {
     let x = yield res.json(map.getCoords());
 }));
+app.post('/map', (req, res) => {
+    let lat = req.body.lat;
+    let lng = req.body.lng;
+    map.addPosition(lat, lng);
+    res.json(map.getCoords());
+});
 app.get('/messages', (req, res) => __awaiter(this, void 0, void 0, function* () {
     try {
         let r = yield res.status(200).json({

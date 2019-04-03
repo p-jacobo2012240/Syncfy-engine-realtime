@@ -18,6 +18,17 @@ app.get('/map', async (req: Request, res: Response )=>{
 })
 
 
+app.post('/map', (req: Request, res : Response  )=>{
+
+    let lat = req.body.lat
+    let lng = req.body.lng
+
+    map.addPosition( lat, lng)
+
+    res.json( map.getCoords()  )
+})
+
+
 app.get('/messages',  async (req: Request, res: Response )=>{
         
     try {

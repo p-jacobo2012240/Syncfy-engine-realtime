@@ -4,20 +4,28 @@ export default class Maps{
 
     //son variables independientes sin ser array
 
-    private coords: any[] = [ { lat: 14.111 , lng: -90.1212}] 
+    private lat = 14.111; 
+    private lng = -90.222
+
+    private coords: any[] = [ {}] 
 
     constructor(){}
 
     getCoords(){
 
-        return this.coords
+        return [ { lat: this.lat, lng: this.lng } ]
     }
 
-    addPosition( obj : any ){
+    addPosition( lat: any, lng : any ){
 
-        this.coords.push( obj )
+        if( lat && lng ){
 
-        return this.coords
+            this.lat  = lat
+            this.lng = lng
+
+            return [ { lat: this.lat, lng: this.lng } ]
+        }
+        
     }
 
 }

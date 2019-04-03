@@ -3,14 +3,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 class Maps {
     constructor() {
         //son variables independientes sin ser array
-        this.coords = [{ lat: 14.111, lng: -90.1212 }];
+        this.lat = 14.111;
+        this.lng = -90.222;
+        this.coords = [{}];
     }
     getCoords() {
-        return this.coords;
+        return [{ lat: this.lat, lng: this.lng }];
     }
-    addPosition(obj) {
-        this.coords.push(obj);
-        return this.coords;
+    addPosition(lat, lng) {
+        if (lat && lng) {
+            this.lat = lat;
+            this.lng = lng;
+            return [{ lat: this.lat, lng: this.lng }];
+        }
     }
 }
 exports.default = Maps;
