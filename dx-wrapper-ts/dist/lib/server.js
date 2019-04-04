@@ -22,14 +22,13 @@ class Server {
         this.port = port;
         this.HttpServe = new http_1.default.Server(this.app);
         this.io = socket_io_1.default(this.HttpServe);
-        this.poolConnections();
+        this.statusSocket();
     }
-    poolConnections() {
-        return __awaiter(this, void 0, void 0, function* () {
-            console.log('activo');
-            //getting pool connections
-            let h = yield this.io.on('connect', client => {
-                console.log('new client connected');
+    statusSocket() {
+        this.io.on('connection', client => {
+            console.log('client connected');
+            client.on('disconnect', () => {
+                console.log('client disconnected');
             });
         });
     }

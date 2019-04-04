@@ -18,17 +18,19 @@ export default class Server{
         this.HttpServe = new http.Server( this.app )
         this.io = skIO( this.HttpServe )
         
-        this.poolConnections()
+        this.statusSocket()
     }
 
-    private async poolConnections(){
+    private statusSocket(){
 
-        console.log('activo')
+        this.io.on('connection', client =>{
 
-        //getting pool connections
-        let h = await this.io.on('connect', client =>{
+            console.log('client connected')
+            
+            client.on('disconnect' , ()=>{
+                console.log('client disconnected')
+            })
 
-            console.log('new client connected')
 
         })
     }

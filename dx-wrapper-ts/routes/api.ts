@@ -5,6 +5,7 @@ import {
 from 'express'
 
 import Maps from '../lib/map';
+import AppServer  from '../lib/server'
 
 let app = Router();
 
@@ -20,8 +21,11 @@ app.get('/map', async (req: Request, res: Response )=>{
 
 app.post('/map', (req: Request, res : Response  )=>{
 
-    let lat = req.body.lat
-    let lng = req.body.lng
+    let lat =  Number(req.body.lat)
+    let lng =  Number(req.body.lng)
+
+    let ioConfig = new AppServer(3001)
+    ioConfig.io.emit('change-position', map.getCoords() )
 
     map.addPosition( lat, lng)
 

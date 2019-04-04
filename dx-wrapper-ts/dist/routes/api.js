@@ -13,14 +13,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const map_1 = __importDefault(require("../lib/map"));
+const server_1 = __importDefault(require("../lib/server"));
 let app = express_1.Router();
 let map = new map_1.default();
 app.get('/map', (req, res) => __awaiter(this, void 0, void 0, function* () {
     let x = yield res.json(map.getCoords());
 }));
 app.post('/map', (req, res) => {
-    let lat = req.body.lat;
-    let lng = req.body.lng;
+    let lat = Number(req.body.lat);
+    let lng = Number(req.body.lng);
+    let ioConfig = new server_1.default(3001);
+    ioConfig.io.emit('change-position', map.getCoords());
     map.addPosition(lat, lng);
     res.json(map.getCoords());
 });
