@@ -8,7 +8,7 @@ export default class Server{
     public port : number =  Number( process.env.PORT_SK ) || 3001;
 
     public io : skIO.Server
-    private HttpServe : http.Server
+    private HttpServe : http.Server    
 
     constructor(port : number ){
   
