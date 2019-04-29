@@ -12,15 +12,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const socket_io_1 = __importDefault(require("socket.io"));
+const http_1 = __importDefault(require("http"));
 class Server {
     constructor() {
         this.port = 3002 || process.env.PORT;
         this.app = express_1.default();
         this.port;
+        this.httpServer = new http_1.default.Server(this.app);
+        this.io = socket_io_1.default(this.httpServer);
+        this.listenSockets();
+    }
+    listenSockets() {
+        this.io.on('connection', client => {
+            console.log(`[connected ] : this client is: ${client} `);
+        });
     }
     start(callback) {
         return __awaiter(this, void 0, void 0, function* () {
-            this.hck = yield this.app.listen(this.port, callback);
+            this.hck = yield this.httpServer.listen(this.port, callback);
         });
     }
 }
