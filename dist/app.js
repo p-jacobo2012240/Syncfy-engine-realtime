@@ -6,10 +6,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const server_1 = require("./models/server");
 const users_1 = require("./routes/users");
 const body_parser_1 = __importDefault(require("body-parser"));
+const cors_1 = __importDefault(require("cors"));
 let server = new server_1.Server();
 //Body-Parser
-server.app.use(body_parser_1.default.urlencoded({ extended: true }));
+server.app.use(body_parser_1.default.urlencoded({
+    extended: true
+}));
 server.app.use(body_parser_1.default.json());
+//Cors Config
+server.app.use(cors_1.default({
+    origin: true,
+    credentials: true
+}));
 //Routes
 server.app.use('/api', users_1.app);
 server.start(() => {
