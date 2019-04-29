@@ -3,7 +3,7 @@ import { app } from './routes/users'
 import bodyparser from 'body-parser'
 import cors from 'cors'
 
-let server = new Server()
+let server = Server.instance
 
 //Body-Parser
 server.app.use(

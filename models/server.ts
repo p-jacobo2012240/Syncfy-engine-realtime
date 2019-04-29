@@ -3,6 +3,8 @@ import skIO from 'socket.io'
 import http from 'http'
 
 export class Server{
+
+    private static _instance : Server
   
     public app          : express.Application
     public port         : Number = 3002 || process.env.PORT
@@ -10,7 +12,7 @@ export class Server{
     public io           : skIO.Server
     public httpServer   : http.Server
 
-    constructor(){
+    private constructor(){
         this.app = express()
         this.port
 
@@ -19,6 +21,12 @@ export class Server{
         this.listenSockets()
     }
 
+    public static get instance(){
+       //if( this._instance == null ){
+            return this._instance || ( this._instance = new this )
+       //}else{} 
+    }
+    
     private listenSockets(){
 
         this.io.on('connection', client =>{

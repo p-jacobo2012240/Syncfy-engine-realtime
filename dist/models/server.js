@@ -23,6 +23,11 @@ class Server {
         this.io = socket_io_1.default(this.httpServer);
         this.listenSockets();
     }
+    static get instance() {
+        //if( this._instance == null ){
+        return this._instance || (this._instance = new this);
+        //}else{} 
+    }
     listenSockets() {
         this.io.on('connection', client => {
             console.log(`[connected ] : this client is: ${client} `);

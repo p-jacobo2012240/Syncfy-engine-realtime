@@ -7,7 +7,7 @@ const server_1 = require("./models/server");
 const users_1 = require("./routes/users");
 const body_parser_1 = __importDefault(require("body-parser"));
 const cors_1 = __importDefault(require("cors"));
-let server = new server_1.Server();
+let server = server_1.Server.instance;
 //Body-Parser
 server.app.use(body_parser_1.default.urlencoded({
     extended: true
