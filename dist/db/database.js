@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const promise_mysql_1 = __importDefault(require("promise-mysql"));
 let params = {
-    host: '127.0.0.1',
+    host: 'localhost',
     user: 'root',
     password: 'developer',
     database: 'metrics'
