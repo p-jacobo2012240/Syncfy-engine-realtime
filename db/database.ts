@@ -2,7 +2,7 @@ import mysql from 'promise-mysql'
 
 
 let params = {
-    host: '127.0.0.1',
+    host: 'localhost',
     user: 'root',
     password: 'developer',
     database: 'metrics'
