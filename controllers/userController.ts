@@ -1,19 +1,27 @@
 import { Request, Response  } from 'express'
-import db from '../db/database'
+import { Users } from '../models/users'
 
-class usersCtrl {
+export let usersCtrl = {
 
-    public async getUsers(req: Request, res : Response ) : Promise<any> {
-        
-        let sql = `SELECT * FROM users`
+   getAllUsers : (req: Request, res : Response )=>{
 
-        let data = await db.query(sql)
-        res.json(data)
-    }
+        let err : any
+      
+        Users.getAllUsers( err, (usersDb : any ) =>{
+            if(err){
+                return res.status(400).json({
+                    ok: false,
+                    message: 'Error de DB',
+                    errors: err
+                })
+            }
+
+            res.status(200).json(usersDb)
+        })
+   
+    } 
 
    
 
 }
 
-const user = new usersCtrl;
-export default user;

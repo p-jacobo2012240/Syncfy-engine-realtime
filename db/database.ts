@@ -1,25 +1,15 @@
-import mysql from 'promise-mysql'
+import mysql from 'mysql'
 
 
 let params = {
-    host: 'localhost',
-    user: 'root',
-    password: 'developer',
-    database: 'metrics'
+    connectionLimit : 10,
+    host            : 'localhost',
+    user            : 'root',
+    password        : 'developer',
+    database        : 'metrics', 
+    port            :  3306 
 }
    
-let pool = mysql.createPool(params)    
+let cnn = mysql.createPool(params)    
 
-pool.getConnection()
-    .then( connection =>{
-
-        pool.releaseConnection(connection)
-        console.log(`connected DB`)
-    
-    }).catch( (err) =>{
-        
-        console.log(`errors ${err} `)  
-    
-    })
-
-export default pool
+export default cnn

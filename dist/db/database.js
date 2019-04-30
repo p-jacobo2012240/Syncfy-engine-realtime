@@ -3,19 +3,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const promise_mysql_1 = __importDefault(require("promise-mysql"));
+const mysql_1 = __importDefault(require("mysql"));
 let params = {
+    connectionLimit: 10,
     host: 'localhost',
     user: 'root',
     password: 'developer',
-    database: 'metrics'
+    database: 'metrics',
+    port: 3306
 };
-let pool = promise_mysql_1.default.createPool(params);
-pool.getConnection()
-    .then(connection => {
-    pool.releaseConnection(connection);
-    console.log(`connected DB`);
-}).catch((err) => {
-    console.log(`errors ${err} `);
-});
-exports.default = pool;
+let cnn = mysql_1.default.createPool(params);
+exports.default = cnn;
