@@ -4,7 +4,7 @@ import { Users } from '../models/users'
 export let usersCtrl = {
 
    getAllUsers : (req: Request, res : Response )=>{
-
+        //callbacks deprecated migrated to promises
         let err : any
       
         Users.getAllUsers( err, (usersDb : any ) =>{
