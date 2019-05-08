@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const users_1 = require("../models/users");
 exports.usersCtrl = {
     getAllUsers: (req, res) => {
+        //callbacks deprecated migrated to promises
         let err;
         users_1.Users.getAllUsers(err, (usersDb) => {
             if (err) {

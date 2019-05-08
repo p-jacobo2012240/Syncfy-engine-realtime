@@ -2,6 +2,7 @@ import express from 'express'
 import skIO from 'socket.io'
 import http from 'http'
 
+
 export class Server{
 
     private static _instance : Server
@@ -31,7 +32,7 @@ export class Server{
 
         this.io.on('connection', client =>{
 
-            console.log(`[connected ] : this client is: ${client} `)
+            console.log(`[connected ] : this client is: ${ client} `)
 
         })
     }
