@@ -2,6 +2,8 @@ import express from 'express'
 import skIO from 'socket.io'
 import http from 'http'
 
+//Helper Broaker-Messages
+import * as broakerConfig from '../broaker/socket-config'
 
 export class Server{
 
@@ -33,6 +35,10 @@ export class Server{
         this.io.on('connection', client =>{
 
             console.log(`[connected ] : this client is: ${ client} `)
+
+            //Disconnect
+            broakerConfig.disconnect( client )
+           
 
         })
     }
