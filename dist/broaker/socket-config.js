@@ -5,3 +5,9 @@ exports.disconnect = (client) => {
         console.log(`[disconnect] : this client is: ${client} `);
     });
 };
+//Observer Socket
+exports.messages = (client) => {
+    client.on('message', (payload) => {
+        console.log('mensaje resibido', payload);
+    });
+};

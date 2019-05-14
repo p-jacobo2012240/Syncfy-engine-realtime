@@ -8,3 +8,13 @@ export const disconnect = ( client: Socket ) => {
     })
 
 }
+
+//Observer Socket
+
+export const messages = ( client: Socket) =>{
+
+    client.on('message', ( payload : any )=>{
+        console.log('mensaje resibido', payload )
+    })
+
+}
