@@ -3,7 +3,7 @@ import skIO from 'socket.io'
 import http from 'http'
 
 //Helper Broaker-Messages
-import * as broakerConfig from '../broaker/socket-config'
+import * as broakerConfig from '../broker/socket-config'
 
 export class Server{
 
@@ -11,7 +11,7 @@ export class Server{
   
     public app          : express.Application
     public port         : Number = 3002 || process.env.PORT
-    public hck          : any
+    public hck          : any  
     public io           : skIO.Server
     public httpServer   : http.Server
 
@@ -34,11 +34,16 @@ export class Server{
 
         this.io.on('connection', client =>{
 
-            console.log(`[connected ] : this client is: ${ client} `)
+            console.log(`[connected ] : this cli ent is: ${ client} `)
 
             //Disconnect
             broakerConfig.disconnect( client )
-           
+            
+            /**
+             * @param HandlerCtrl(client)
+             * @return observable SocketIo
+             */
+            broakerConfig.messages(client)
 
         })
     }

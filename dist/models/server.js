@@ -22,7 +22,7 @@ const express_1 = __importDefault(require("express"));
 const socket_io_1 = __importDefault(require("socket.io"));
 const http_1 = __importDefault(require("http"));
 //Helper Broaker-Messages
-const broakerConfig = __importStar(require("../broaker/socket-config"));
+const broakerConfig = __importStar(require("../broker/socket-config"));
 class Server {
     constructor() {
         this.port = 3002 || process.env.PORT;
@@ -39,9 +39,14 @@ class Server {
     }
     listenSockets() {
         this.io.on('connection', client => {
-            console.log(`[connected ] : this client is: ${client} `);
+            console.log(`[connected ] : this cli ent is: ${client} `);
             //Disconnect
             broakerConfig.disconnect(client);
+            /**
+             * @param HandlerCtrl(client)
+             * @return observable SocketIo
+             */
+            broakerConfig.messages(client);
         });
     }
     start(callback) {
