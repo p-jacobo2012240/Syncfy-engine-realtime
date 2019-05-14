@@ -34,13 +34,13 @@ export class Server{
 
         this.io.on('connection', client =>{
 
-            console.log(`[connected ] : this client is: ${ client} `)
+            console.log(`[connected ] : this cli ent is: ${ client} `)
 
             //Disconnect
             broakerConfig.disconnect( client )
             
             /**
-             * @param HandlerCrl(client)
+             * @param HandlerCtrl(client)
              * @return observable SocketIo
              */
             broakerConfig.messages(client)
