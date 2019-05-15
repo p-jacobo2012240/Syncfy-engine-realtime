@@ -6,8 +6,9 @@ exports.disconnect = (client) => {
     });
 };
 //Observer Socket
-exports.messages = (client) => {
+exports.messages = (client, io) => {
     client.on('message', (payload) => {
         console.log('mensaje resibido', payload);
+        io.emit('listen-messages', payload);
     });
 };

@@ -1,5 +1,5 @@
 import { Socket } from 'socket.io';
-
+import SocketIO from 'socket.io'
 
 export const disconnect = ( client: Socket ) => {
 
@@ -11,10 +11,12 @@ export const disconnect = ( client: Socket ) => {
 
 //Observer Socket
 
-export const messages = ( client: Socket) =>{
+export const messages = ( client: Socket, io: SocketIO.Server )  =>{
 
     client.on('message', ( payload : any )=>{
         console.log('mensaje resibido', payload )
-    })
+        
+        io.emit('listen-messages', payload   ) 
 
+    })
 }

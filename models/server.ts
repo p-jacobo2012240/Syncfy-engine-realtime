@@ -43,7 +43,7 @@ export class Server{
              * @param HandlerCtrl(client)
              * @return observable SocketIo
              */
-            broakerConfig.messages(client)
+            broakerConfig.messages(client, this.io )
 
         })
     }
