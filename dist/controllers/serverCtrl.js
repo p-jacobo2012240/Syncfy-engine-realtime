@@ -33,10 +33,27 @@ class ServerCtrl {
             return this.result = yield this.listActive;
         });
     }
+    //Getter Only user
     getUser(id) {
         return __awaiter(this, void 0, void 0, function* () {
             return this.result = yield this.listActive.find((user) => user.id === id);
         });
+    }
+    //Getter Users in Room
+    getUsersInRooM(group) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.result = yield this.listActive.filter((user) => {
+                user.group === group;
+            });
+        });
+    }
+    //Process remove user
+    rmUser(id) {
+        let _temp_ = this.getUser(id);
+        this.listActive = this.listActive.filter((user) => {
+            return user.id !== id;
+        });
+        return _temp_;
     }
 }
 exports.ServerCtrl = ServerCtrl;

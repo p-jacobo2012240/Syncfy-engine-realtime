@@ -40,10 +40,29 @@ export class ServerCtrl {
         return  this.result = await this.listActive
     }
 
+    //Getter Only user
     public async getUser( id : string ){
         return this.result = await this.listActive.find( (user : any ) => user.id === id  )    
     }
 
+    //Getter Users in Room
+    public async getUsersInRooM( group : string ){
+        return this.result = await this.listActive.filter( (user : any) =>{
+            user.group === group
+        })
+    }
+
+    //Process remove user
+    public rmUser( id: string ){
+        
+        let _temp_ = this.getUser( id)
+
+        this.listActive = this.listActive.filter( (user : any ) =>{
+            return  user.id !== id
+        })
+
+        return _temp_
+    }
 
 
 
