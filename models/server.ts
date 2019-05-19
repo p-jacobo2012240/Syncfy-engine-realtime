@@ -51,7 +51,7 @@ export class Server{
              * @return void user
              */
             broakerConfig.loginMethod( client, this.io )
-
+   
         })
     }
 
