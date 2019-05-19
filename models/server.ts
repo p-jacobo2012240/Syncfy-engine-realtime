@@ -45,6 +45,13 @@ export class Server{
              */
             broakerConfig.messages(client, this.io )
 
+            /**
+             * 
+             * @param Handler Object (user)
+             * @return void user
+             */
+            broakerConfig.loginMethod( client, this.io )
+
         })
     }
 

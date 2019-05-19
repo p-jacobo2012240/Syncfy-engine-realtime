@@ -47,6 +47,12 @@ class Server {
              * @return observable SocketIo
              */
             broakerConfig.messages(client, this.io);
+            /**
+             *
+             * @param Handler Object (user)
+             * @return void user
+             */
+            broakerConfig.loginMethod(client, this.io);
         });
     }
     start(callback) {
