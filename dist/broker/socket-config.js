@@ -1,5 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const serverCtrl_1 = require("../controllers/serverCtrl");
+const user_1 = require("../models/user");
+exports.serverCtrl = new serverCtrl_1.ServerCtrl();
 exports.disconnect = (client) => {
     client.on('disconnect', () => {
         console.log(`[disconnect] : this client is: ${client} `);
@@ -20,4 +23,8 @@ exports.loginMethod = (user, io) => {
         console.log('username resibido', payloadUser);
         //io.emit('login-method', payloadUser )
     });
+};
+exports.clientConnected = (client) => {
+    let user = new user_1.User(client.id);
+    exports.serverCtrl.addUser(user);
 };
