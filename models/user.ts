@@ -9,13 +9,13 @@ export class User{
 
     constructor(
         id_user : string, 
-        username : string,
-        group: string 
+        //username : string,
+        //group: string 
         ){
 
             this.id_user = id_user
-            this.username = username
-            this.group = group
+            //this.username = username
+            //this.group = group
     }
 
 

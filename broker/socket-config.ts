@@ -1,5 +1,10 @@
 import { Socket } from 'socket.io';
 import SocketIO from 'socket.io'
+import { ServerCtrl } from '../controllers/serverCtrl'
+import { User } from '../models/user';
+
+
+export const serverCtrl = new ServerCtrl()
 
 export const disconnect = ( client: Socket ) => {
 
@@ -24,8 +29,6 @@ export const messages = ( client: Socket, io: SocketIO.Server )  =>{
     })
 }
 
-
-
 // Login User
   
 export const loginMethod = ( user : Socket, io : SocketIO.Server ) =>{
@@ -36,3 +39,11 @@ export const loginMethod = ( user : Socket, io : SocketIO.Server ) =>{
         //io.emit('login-method', payloadUser )
     })
 } 
+
+
+export const clientConnected = (  client : Socket)=>{
+
+    let user = new User( client.id )
+    serverCtrl.addUser( user )
+
+}

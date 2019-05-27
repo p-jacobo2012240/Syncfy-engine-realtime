@@ -39,7 +39,13 @@ class Server {
     }
     listenSockets() {
         this.io.on('connection', client => {
-            console.log(`[connected ] : this cli ent is: ${client} `);
+            console.log(`[connected ]`);
+            /**
+             * client Persist
+             * @param clientConnected
+             * @return clienPersist
+             */
+            broakerConfig.clientConnected(client);
             //Disconnect
             broakerConfig.disconnect(client);
             /**
