@@ -9,7 +9,10 @@ export const serverCtrl = new ServerCtrl()
 export const disconnect = ( client: Socket ) => {
 
     client.on('disconnect', ()=>{
-        console.log(`[disconnect] : this client is: ${ client} `)
+        console.log(`[disconnect] : this client is: ${ client }  `)
+
+        serverCtrl.rmUser( client.id )
+
     })
 
 }
@@ -33,10 +36,16 @@ export const messages = ( client: Socket, io: SocketIO.Server )  =>{
   
 export const loginMethod = ( user : Socket, io : SocketIO.Server ) =>{
 
-    user.on('login-method', (payloadUser : any )=>{
+    user.on('login-method', (payloadUser : any, callback : Function  )=>{
         console.log('username resibido', payloadUser )
 
-        //io.emit('login-method', payloadUser )
+        serverCtrl.updateUser( user.id, payloadUser.username )  
+
+        callback({
+            ok: true,
+            message : `usaurio ${  JSON.stringify( payloadUser) } configured`
+        })
+        
     })
 } 
 

@@ -15,17 +15,22 @@ class ServerCtrl {
     addUser(user) {
         return __awaiter(this, void 0, void 0, function* () {
             this.result = yield this.listActive.push(user);
+            console.log(` 
+            this all users connected 
+                ${JSON.stringify(this.listActive)}
+            `);
             return user;
         });
     }
-    updateUser(id, username) {
+    updateUser(idx, usern) {
         for (this.userLoop of this.listActive) {
-            if (this.userLoop.id === id) {
-                this.userLoop.username = username;
+            if (this.userLoop.id == idx) {
+                this.userLoop.username = usern;
                 break;
             }
-            console.log('user updated', this.listActive);
         }
+        console.log('===========================');
+        console.log('user updated', this.listActive);
     }
     //Users Connecteds
     getList() {

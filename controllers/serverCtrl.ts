@@ -6,33 +6,32 @@ export class ServerCtrl {
     private listActive : User [] = []
     public result : any
     private userLoop: any
+    private exp : any;
 
-    constructor(){
-
-    }
-
+    constructor(){}
 
     public async addUser( user : User  ){
 
         this.result = await this.listActive.push( user  )
+        console.log(` 
+            this all users connected 
+                ${ JSON.stringify( this.listActive) }
+            ` )
         return user
 
     }
 
-    public  updateUser( id: string , username: string  ){
+    public  updateUser( idx: string , usern: string  ){
 
-        
         for(this.userLoop of this.listActive ){
-
-            if( this.userLoop.id === id ){
-                this.userLoop.username =  username
+           
+            if( this.userLoop.id == idx ){
+                this.userLoop.username =  usern
                 break
             }
-
-
-            console.log('user updated', this.listActive )
-
         }
+        console.log('===========================')
+        console.log('user updated', this.listActive )
     }
 
     //Users Connecteds
