@@ -40,6 +40,8 @@ class Server {
     listenSockets() {
         this.io.on('connection', client => {
             console.log(`[connected ]`);
+            console.log(client.id);
+            //Registers Async Processes
             /**
              * client Persist
              * @param clientConnected
