@@ -51,13 +51,13 @@ class Server {
             //Disconnect
             broakerConfig.disconnect(client);
             /**
-             * @param HandlerCtrl(client)
+             * @param HandleCtrl(client)
              * @return observable SocketIo
              */
             broakerConfig.messages(client, this.io);
             /**
              *
-             * @param Handler Object (user)
+             * @param Handle Object (user)
              * @return void user
              */
             broakerConfig.loginMethod(client, this.io);
