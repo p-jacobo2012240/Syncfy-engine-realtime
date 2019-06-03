@@ -14,8 +14,9 @@ export class MessagesCtrl {
 
     constructor(){}
 
-    private async sendOneToOne( req: Request, res: Response ) : Promise<any>{
+    public async sendOneToOne( req: Request, res: Response ) : Promise<any>{
 
+        //console.log('llegaste aqui')
         let ctx = {
             id : req.body.id,
             data : req.body.data,

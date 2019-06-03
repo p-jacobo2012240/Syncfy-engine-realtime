@@ -15,6 +15,7 @@ class MessagesCtrl {
     constructor() { }
     sendOneToOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            //console.log('llegaste aqui')
             let ctx = {
                 id: req.body.id,
                 data: req.body.data,
