@@ -2,6 +2,7 @@ import {
     Request,
     Response
  } from 'express'
+import { Server } from '../models/server';
 
 
 export class MessagesCtrl {
@@ -16,19 +17,25 @@ export class MessagesCtrl {
 
     public async sendOneToOne( req: Request, res: Response ) : Promise<any>{
 
-        //console.log('llegaste aqui')
         let ctx = {
-            id : req.body.id,
+            id : req.params.id,
             data : req.body.data,
             of: req.body.of
         }
+
+        let server = Server.instance
+        server.io.in( req.params.id  ).emit('one-to-one', ctx )
 
         try {
 
             let result = await res.status(200).json({
                 ok: true,
                 msg : 'sent..',
-                ctx
+                context_msg: [
+                    ctx.id,
+                    ctx.data,
+                    ctx.of
+                ]
             })
             
         } catch (e) {

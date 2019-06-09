@@ -4,5 +4,6 @@ const express_1 = require("express");
 const MessagesController_1 = require("../controllers/MessagesController");
 let app = express_1.Router();
 let MsgCtrl = MessagesController_1.MessagesCtrl.getInstance;
-app.post('/', MsgCtrl.sendOneToOne);
+//Send private message
+app.post('/:id', MsgCtrl.sendOneToOne);
 exports.default = app;

@@ -5,6 +5,8 @@ let app =  Router()
 
 let MsgCtrl = MessagesCtrl.getInstance
 
-app.post('/', MsgCtrl.sendOneToOne )
+//Send private message
+app.post('/:id', MsgCtrl.sendOneToOne )
+
 
 export default app;
