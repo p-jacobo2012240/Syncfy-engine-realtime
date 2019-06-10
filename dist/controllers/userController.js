@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const server_1 = require("../models/server");
+const socket_config_1 = require("../broker/socket-config");
 class UsersCtrl {
     static get getInstance() {
         return this._getInstance || (this._getInstance = new this);
@@ -33,6 +34,22 @@ class UsersCtrl {
                 ` });
                 }
             });
+        });
+    }
+    //BUILD FUNCTION....
+    usersDetail(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                let result = yield res.status(200).json({
+                    ok: true,
+                    users: socket_config_1.serverCtrl.getList()
+                });
+            }
+            catch (e) {
+                res.status(409).json({ message: `
+                error is ${e}
+            ` });
+            }
         });
     }
 }

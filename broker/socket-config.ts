@@ -4,7 +4,14 @@ import { ServerCtrl } from '../controllers/serverCtrl'
 import { User } from '../models/user';
 
 
-export const serverCtrl = new ServerCtrl()
+export  const serverCtrl = new ServerCtrl()
+
+export const clientConnected = (  client : Socket)=>{
+
+    let user = new User( client.id )
+    serverCtrl.addUser( user )
+
+}
 
 export const disconnect = ( client: Socket ) => {
 
@@ -50,9 +57,3 @@ export const loginMethod = ( user : Socket, io : SocketIO.Server ) =>{
 } 
 
 
-export const clientConnected = (  client : Socket)=>{
-
-    let user = new User( client.id )
-    serverCtrl.addUser( user )
-
-}

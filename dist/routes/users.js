@@ -5,4 +5,5 @@ const userController_1 = require("../controllers/userController");
 let app = express_1.Router();
 let usersCtrl = userController_1.UsersCtrl.getInstance;
 app.get('/', usersCtrl.getUsers);
+app.get('/detail', usersCtrl.usersDetail);
 exports.default = app;

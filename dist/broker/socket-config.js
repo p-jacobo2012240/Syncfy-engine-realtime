@@ -3,6 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const serverCtrl_1 = require("../controllers/serverCtrl");
 const user_1 = require("../models/user");
 exports.serverCtrl = new serverCtrl_1.ServerCtrl();
+exports.clientConnected = (client) => {
+    let user = new user_1.User(client.id);
+    exports.serverCtrl.addUser(user);
+};
 exports.disconnect = (client) => {
     client.on('disconnect', () => {
         console.log(`[disconnect] : this client is: ${client}  `);
@@ -28,8 +32,4 @@ exports.loginMethod = (user, io) => {
             message: `usaurio ${JSON.stringify(payloadUser)} configured`
         });
     });
-};
-exports.clientConnected = (client) => {
-    let user = new user_1.User(client.id);
-    exports.serverCtrl.addUser(user);
 };
