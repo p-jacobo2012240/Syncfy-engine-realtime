@@ -41,5 +41,25 @@ class MessagesCtrl {
             }
         });
     }
+    sendOneToMany(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            let ctx = {
+                data: req.body.data,
+                of: req.body.of
+            };
+            try {
+                let result = yield res.status(200).json({
+                    ok: true,
+                    message: 'send...',
+                    ctx
+                });
+            }
+            catch (e) {
+                res.send({ message: `
+            An error has occurred : ${e}
+            ` });
+            }
+        });
+    }
 }
 exports.MessagesCtrl = MessagesCtrl;

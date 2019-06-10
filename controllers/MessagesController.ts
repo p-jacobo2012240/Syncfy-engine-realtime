@@ -27,7 +27,7 @@ export class MessagesCtrl {
         server.io.in( req.params.id  ).emit('one-to-one', ctx )
 
         try {
-
+   
             let result = await res.status(200).json({
                 ok: true,
                 msg : 'sent..',
@@ -44,7 +44,28 @@ export class MessagesCtrl {
             `)
         }
 
-    } 
+    }
+    
+    public async sendOneToMany(req: Request, res:Response ) : Promise<any>{
+
+        let ctx ={
+            data : req.body.data,
+            of: req.body.of
+        }
+        try {
+
+            let result = await res.status(200).json({
+                ok: true,
+                message: 'send...',
+                ctx
+            })
+            
+        } catch (e) {
+            res.send({ message: `
+            An error has occurred : ${e}
+            `})
+        }
+    }
 
  }
 
