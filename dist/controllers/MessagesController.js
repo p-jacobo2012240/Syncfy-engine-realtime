@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const server_1 = require("../models/server");
 class MessagesCtrl {
     static get getInstance() {
         return this._getInstance || (this._getInstance = new this);
@@ -15,23 +16,51 @@ class MessagesCtrl {
     constructor() { }
     sendOneToOne(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            //console.log('llegaste aqui')
             let ctx = {
-                id: req.body.id,
+                id: req.params.id,
                 data: req.body.data,
                 of: req.body.of
             };
+            let server = server_1.Server.instance;
+            server.io.in(req.params.id).emit('one-to-one', ctx);
             try {
                 let result = yield res.status(200).json({
                     ok: true,
                     msg: 'sent..',
-                    ctx
+                    context_msg: [
+                        ctx.id,
+                        ctx.data,
+                        ctx.of
+                    ]
                 });
             }
             catch (e) {
                 res.json(`
                 An error has occurred : ${e}
             `);
+            }
+        });
+    }
+    sendOneToMany(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            //las estructuras deben de ser paralelamente simetricas en cuanto a sus atributos
+            let ctx = {
+                body: req.body.body,
+                of: req.body.of
+            };
+            let server = server_1.Server.instance;
+            server.io.emit('listen-messages', ctx);
+            try {
+                let result = yield res.status(200).json({
+                    ok: true,
+                    message: 'send...',
+                    ctx
+                });
+            }
+            catch (e) {
+                res.send({ message: `
+            An error has occurred : ${e}
+            ` });
             }
         });
     }

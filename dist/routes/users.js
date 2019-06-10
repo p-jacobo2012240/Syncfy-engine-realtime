@@ -2,8 +2,8 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const userController_1 = require("../controllers/userController");
-exports.app = express_1.Router();
-exports.app.get('/users', (req, res) => {
-    console.log('holaaa');
-});
-exports.app.get('/usersdb', userController_1.usersCtrl.getAllUsers);
+let app = express_1.Router();
+let usersCtrl = userController_1.UsersCtrl.getInstance;
+app.get('/', usersCtrl.getUsers);
+app.get('/detail', usersCtrl.usersDetail);
+exports.default = app;
