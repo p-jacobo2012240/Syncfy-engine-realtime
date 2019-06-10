@@ -48,10 +48,16 @@ export class MessagesCtrl {
     
     public async sendOneToMany(req: Request, res:Response ) : Promise<any>{
 
+        //las estructuras deben de ser paralelamente simetricas en cuanto a sus atributos
+
         let ctx ={
-            data : req.body.data,
+            body : req.body.body,
             of: req.body.of
         }
+
+        let server = Server.instance
+        server.io.emit('listen-messages', ctx )
+
         try {
 
             let result = await res.status(200).json({

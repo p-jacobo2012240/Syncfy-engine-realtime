@@ -1,27 +1,41 @@
 import { Request, Response  } from 'express'
-import { Users } from '../models/users'
+import { Server } from '../models/server'
+import { Socket } from 'socket.io';
 
-export let usersCtrl = {
+export class UsersCtrl{
 
-   getAllUsers : (req: Request, res : Response )=>{
-        //callbacks deprecated migrated to promises
-        let err : any
-      
-        Users.getAllUsers( err, (usersDb : any ) =>{
-            if(err){
-                return res.status(400).json({
-                    ok: false,
-                    message: 'Error de DB',
-                    errors: err
-                })
+    private static _getInstance : UsersCtrl
+
+    public static get getInstance(){
+        return this._getInstance || ( this._getInstance = new this )
+        
+    }
+
+    constructor(){}
+
+    public async getUsers( req: Request, res: Response ) : Promise<any>{
+
+        let server = Server.instance
+        server.io.clients( (err: any, usersOnline: Socket )=>{
+
+            try {
+
+                if(err){
+                    return res.status(400).json({
+                        ok: false,
+                        errors: err
+                    })
+                }
+
+                res.status(200).json(usersOnline)
+                
+            } catch (e) {
+                res.status(409).json({message: `
+                    error is ${e}
+                `})
             }
 
-            res.status(200).json(usersDb)
         })
-   
     } 
 
-   
-
 }
-

@@ -43,10 +43,13 @@ class MessagesCtrl {
     }
     sendOneToMany(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
+            //las estructuras deben de ser paralelamente simetricas en cuanto a sus atributos
             let ctx = {
-                data: req.body.data,
+                body: req.body.body,
                 of: req.body.of
             };
+            let server = server_1.Server.instance;
+            server.io.emit('listen-messages', ctx);
             try {
                 let result = yield res.status(200).json({
                     ok: true,

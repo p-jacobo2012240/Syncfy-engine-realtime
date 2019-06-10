@@ -1,6 +1,7 @@
 import { Server } from './models/server'
+
 //basic-routes
-import { app } from './routes/users'
+import  userCtrl   from './routes/users'
 import  msgCtrl  from './routes/messages'
 
 import bodyparser from 'body-parser'
@@ -24,7 +25,7 @@ server.app.use( cors({
 }))
 
 //Routes
-server.app.use('/api', app)
+server.app.use('/api', userCtrl)
 server.app.use('/messages',  msgCtrl )
 
 server.start( ()=>{

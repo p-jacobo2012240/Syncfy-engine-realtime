@@ -1,16 +1,9 @@
-import {    
-    Router, 
-    Request, 
-    Response 
-} from 'express'
+import { Router } from 'express'
+import { UsersCtrl } from '../controllers/userController'
 
-import { usersCtrl } from '../controllers/userController'
+let app = Router()
+let usersCtrl = UsersCtrl.getInstance
 
-export let app = Router()
+app.get('/', usersCtrl.getUsers )
 
-
-app.get('/users', (req: Request, res: Response)=>{
-    console.log('holaaa')
-})
-
-app.get('/usersdb', usersCtrl.getAllUsers )
+export default app;
