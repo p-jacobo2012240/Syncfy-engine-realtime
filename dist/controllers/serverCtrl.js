@@ -34,9 +34,7 @@ class ServerCtrl {
     }
     //Users Connecteds
     getList() {
-        return __awaiter(this, void 0, void 0, function* () {
-            return this.result = yield this.listActive;
-        });
+        return this.listActive.filter(user => user.username != 'non-username');
     }
     //Getter Only user
     getUser(id) {
