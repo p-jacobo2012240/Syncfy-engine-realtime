@@ -2,9 +2,9 @@
 
 export class User{
 
-    private id : string = ''
-    private username : string  = 'no-name'
-    private group : string = 'no-group'
+    public id : string = ''
+    public username : string  = 'no-name'
+    public group : string = 'no-group'
 
     constructor( id : string  ){
         this.id = id

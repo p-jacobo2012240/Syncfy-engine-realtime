@@ -11,7 +11,7 @@ export class ServerCtrl {
     constructor(){}
 
     public async addUser( user : User  ){
-
+   
         this.result = await this.listActive.push( user  )
         console.log(` 
             this all users connected 
@@ -35,8 +35,8 @@ export class ServerCtrl {
     }
 
     //Users Connecteds
-    public async getList(){
-        return  this.result = await this.listActive
+    public  getList(){
+        return this.listActive.filter( user => user.username != 'non-username'  )
     }
 
     //Getter Only user
