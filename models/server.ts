@@ -46,8 +46,11 @@ export class Server{
              */
             broakerConfig.clientConnected( client )
 
-            //Disconnect
-            broakerConfig.disconnect( client )
+            /**
+             * Disconnect And Send
+             * Notify rest users
+             */
+            broakerConfig.disconnect( client, this.io )
             
             /**
              * @param HandleCtrl(client)

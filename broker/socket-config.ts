@@ -13,12 +13,15 @@ export const clientConnected = (  client : Socket)=>{
 
 }
 
-export const disconnect = ( client: Socket ) => {
+export const disconnect = ( client: Socket, io : SocketIO.Server ) => {
 
     client.on('disconnect', ()=>{
         console.log(`[disconnect] : this client is: ${ client }  `)
 
         serverCtrl.rmUser( client.id )
+
+        //Notify rest users 
+        io.emit('active-users',  serverCtrl.getList() )
 
     })
 
