@@ -6,7 +6,7 @@ import { User } from '../models/user';
 
 export  const serverCtrl = new ServerCtrl()
 
-export const clientConnected = (  client : Socket)=>{
+export const clientConnected = (  client : Socket, io: SocketIO.Server )=>{
 
     let user = new User( client.id )
     serverCtrl.addUser( user )
@@ -50,6 +50,10 @@ export const loginMethod = ( user : Socket, io : SocketIO.Server ) =>{
         console.log('username resibido', payloadUser )
 
         serverCtrl.updateUser( user.id, payloadUser.username )  
+
+        //Lis Users [ non-names]
+        io.emit('active-users',  serverCtrl.getList())
+
 
         callback({
             ok: true,

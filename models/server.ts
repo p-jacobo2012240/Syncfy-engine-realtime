@@ -44,7 +44,7 @@ export class Server{
              * @param clientConnected
              * @return clienPersist
              */
-            broakerConfig.clientConnected( client )
+            broakerConfig.clientConnected( client, this.io )
 
             /**
              * Disconnect And Send
