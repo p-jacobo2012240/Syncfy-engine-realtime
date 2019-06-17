@@ -37,3 +37,10 @@ exports.loginMethod = (user, io) => {
         });
     });
 };
+exports.listUsersInMemory = (user, io) => {
+    user.on('get-list-users', () => {
+        //Lis Users [ non-names]
+        io.to(user.id)
+            .emit('active-users', exports.serverCtrl.getList());
+    });
+};

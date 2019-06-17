@@ -61,6 +61,18 @@ export const loginMethod = ( user : Socket, io : SocketIO.Server ) =>{
         })
         
     })
-} 
+}
+
+
+export const listUsersInMemory = ( user: Socket, io : SocketIO.Server )=>{
+
+    user.on('get-list-users', ()=>{
+        
+        //Lis Users [ non-names]
+        io.to( user.id )
+            .emit('active-users', serverCtrl.getList())
+
+    })
+}
 
 
