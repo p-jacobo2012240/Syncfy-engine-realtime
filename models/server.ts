@@ -44,10 +44,19 @@ export class Server{
              * @param clientConnected
              * @return clienPersist
              */
-            broakerConfig.clientConnected( client )
+            broakerConfig.clientConnected( client, this.io )
 
-            //Disconnect
-            broakerConfig.disconnect( client )
+            /**
+             * @param client [in-memory]
+             * @return full-list
+             */
+             broakerConfig.listUsersInMemory( client, this.io )
+
+            /**
+             * Disconnect And Send
+             * Notify rest users
+             */
+            broakerConfig.disconnect( client, this.io )
             
             /**
              * @param HandleCtrl(client)

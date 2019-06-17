@@ -6,19 +6,22 @@ import { User } from '../models/user';
 
 export  const serverCtrl = new ServerCtrl()
 
-export const clientConnected = (  client : Socket)=>{
+export const clientConnected = (  client : Socket, io: SocketIO.Server )=>{
 
     let user = new User( client.id )
     serverCtrl.addUser( user )
 
 }
 
-export const disconnect = ( client: Socket ) => {
+export const disconnect = ( client: Socket, io : SocketIO.Server ) => {
 
     client.on('disconnect', ()=>{
         console.log(`[disconnect] : this client is: ${ client }  `)
 
         serverCtrl.rmUser( client.id )
+
+        //Notify rest users 
+        io.emit('active-users',  serverCtrl.getList() )
 
     })
 
@@ -48,12 +51,28 @@ export const loginMethod = ( user : Socket, io : SocketIO.Server ) =>{
 
         serverCtrl.updateUser( user.id, payloadUser.username )  
 
+        //Lis Users [ non-names]
+        io.emit('active-users',  serverCtrl.getList())
+
+
         callback({
             ok: true,
             message : `usaurio ${  JSON.stringify( payloadUser) } configured`
         })
         
     })
-} 
+}
+
+
+export const listUsersInMemory = ( user: Socket, io : SocketIO.Server )=>{
+
+    user.on('get-list-users', ()=>{
+        
+        //Lis Users [ non-names]
+        io.to( user.id )
+            .emit('active-users', serverCtrl.getList())
+
+    })
+}
 
 

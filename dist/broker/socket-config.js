@@ -3,14 +3,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const serverCtrl_1 = require("../controllers/serverCtrl");
 const user_1 = require("../models/user");
 exports.serverCtrl = new serverCtrl_1.ServerCtrl();
-exports.clientConnected = (client) => {
+exports.clientConnected = (client, io) => {
     let user = new user_1.User(client.id);
     exports.serverCtrl.addUser(user);
 };
-exports.disconnect = (client) => {
+exports.disconnect = (client, io) => {
     client.on('disconnect', () => {
         console.log(`[disconnect] : this client is: ${client}  `);
         exports.serverCtrl.rmUser(client.id);
+        //Notify rest users 
+        io.emit('active-users', exports.serverCtrl.getList());
     });
 };
 //Observer Socket
@@ -27,9 +29,18 @@ exports.loginMethod = (user, io) => {
     user.on('login-method', (payloadUser, callback) => {
         console.log('username resibido', payloadUser);
         exports.serverCtrl.updateUser(user.id, payloadUser.username);
+        //Lis Users [ non-names]
+        io.emit('active-users', exports.serverCtrl.getList());
         callback({
             ok: true,
             message: `usaurio ${JSON.stringify(payloadUser)} configured`
         });
+    });
+};
+exports.listUsersInMemory = (user, io) => {
+    user.on('get-list-users', () => {
+        //Lis Users [ non-names]
+        io.to(user.id)
+            .emit('active-users', exports.serverCtrl.getList());
     });
 };

@@ -47,9 +47,17 @@ class Server {
              * @param clientConnected
              * @return clienPersist
              */
-            broakerConfig.clientConnected(client);
-            //Disconnect
-            broakerConfig.disconnect(client);
+            broakerConfig.clientConnected(client, this.io);
+            /**
+             * @param client [in-memory]
+             * @return full-list
+             */
+            broakerConfig.listUsersInMemory(client, this.io);
+            /**
+             * Disconnect And Send
+             * Notify rest users
+             */
+            broakerConfig.disconnect(client, this.io);
             /**
              * @param HandleCtrl(client)
              * @return observable SocketIo

@@ -37,7 +37,7 @@ export class ServerCtrl {
     //Users Connecteds
     public  getList(){
         return this.listActive.filter( user => user.username != 'non-username'  )
-    }
+    }     
 
     //Getter Only user
     public async getUser( id : string ){
