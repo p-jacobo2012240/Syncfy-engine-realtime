@@ -2,11 +2,13 @@ import { Response, Request } from 'express'
 
 export class GraphCtrl{
 
-    private static _getInstance : GraphCtrl
+    private static instance : GraphCtrl
 
-    //Adding Singleton
     public static get getInstance(){
-        return this._getInstance || ( this._getInstance = new this ) 
+        if( this.instance == null ){
+            this.instance = new this
+        }
+        return this.instance
     }
     
     
