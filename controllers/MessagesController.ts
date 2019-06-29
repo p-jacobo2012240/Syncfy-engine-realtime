@@ -7,10 +7,13 @@ import { Server } from '../models/server';
 
 export class MessagesCtrl {
 
-    private static _getInstance : MessagesCtrl
+    private static instance : MessagesCtrl
 
     public static get getInstance(){
-        return this._getInstance || ( this._getInstance = new this ) 
+        if( this.instance == null){
+            this.instance = new this
+        }
+        return this.instance
     } 
 
     constructor(){}
