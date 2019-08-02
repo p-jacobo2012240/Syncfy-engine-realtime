@@ -11,6 +11,7 @@ export class GraphCtrl{
         return this.instance
     }
     
+    //this fn
     
     //Basics Methods
     //builddd
