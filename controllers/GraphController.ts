@@ -10,6 +10,10 @@ export class GraphCtrl{
         }
         return this.instance
     }
+
+    public async getMetrics( req: Request, res: Response ){
+        //build
+    }
     
     //this fn
     
