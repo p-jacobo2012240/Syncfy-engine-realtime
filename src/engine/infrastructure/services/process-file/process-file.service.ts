@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import * as fs from 'fs-extra';
+import { TaskCreatorDomain } from 'src/engine/domain/task-creator.domain';
 
 @Injectable()
 export class ProcessFileService {
@@ -16,4 +17,11 @@ export class ProcessFileService {
             console.error(err)
         }
     }
+
+
+    createNewTask(taskCreatorDomain: TaskCreatorDomain) {
+        
+    }
+
+
 }

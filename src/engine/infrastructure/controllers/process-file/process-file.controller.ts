@@ -1,4 +1,5 @@
-import { Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
+import { TaskCreatorDomain } from 'src/engine/domain/task-creator.domain';
 import { ProcessFileService } from '../../services/process-file/process-file.service';
 
 @Controller('process-file')
@@ -13,4 +14,8 @@ export class ProcessFileController {
         this.processFileService.moveFilePathToPath();
     }
 
+    @Post('/new-task')
+    createNewTask(@Body() TaskCreatorDomain: TaskCreatorDomain) {
+        return this.processFileService.createNewTask(TaskCreatorDomain);
+    }
 }
