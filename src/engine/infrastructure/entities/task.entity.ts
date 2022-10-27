@@ -3,15 +3,14 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 @Entity({ name: 'tbl_db_task' })
 export class Task {
 
-    @PrimaryGeneratedColumn()
-    @Column({ name: 'task_id'})
+    @PrimaryGeneratedColumn({ name: 'task_id'})
     taskId: number;
 
     @Column({ name: 'name'})
-    name: string;
+    name: String;
 
     @Column({ name: 'run_each'})
-    runEach: string;
+    runEach: String;
 
     @Column({name: 'created_at'})
     createdAt: Date;

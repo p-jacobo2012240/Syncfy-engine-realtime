@@ -5,7 +5,11 @@ import { map, catchError } from 'rxjs';
 @Injectable()
 export class SyncfyManagementProxyService {
 
+    // TEMP while i create env file
     readonly API_URL = 'http://localhost:8081'
+
+    // useful to implement axios in nestjs 
+    // https://www.codewithvlad.com/blog/how-to-use-axios-in-nestjs
 
     constructor(private http: HttpService) {}
 

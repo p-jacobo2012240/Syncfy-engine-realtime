@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import * as fs from 'fs-extra';
 import { TaskCreatorDomain } from 'src/engine/domain/task-creator.domain';
+import { TaskRepositoryImpl } from '../../repositories/task.repository';
 
 @Injectable()
 export class ProcessFileService {
@@ -8,6 +9,8 @@ export class ProcessFileService {
     // https://yarnpkg.com/package/copyfiles
     readonly pathFrom = "C:/github/test-path-files/From";
     readonly pathTo = "C:/github/test-path-files/to";
+
+    constructor(private taskRepositoy: TaskRepositoryImpl){}
 
     moveFilePathToPath(){
         try {
@@ -20,7 +23,8 @@ export class ProcessFileService {
 
 
     createNewTask(taskCreatorDomain: TaskCreatorDomain) {
-        
+        return null;
+        //return this.taskRepositoy.saveNewTask(taskCreatorDomain);
     }
 
 

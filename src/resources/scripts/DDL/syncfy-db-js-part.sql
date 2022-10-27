@@ -13,3 +13,9 @@ create table tbl_db_task_detail (
 	alert_id integer,
 	notification_id integer
 )
+
+create table tbl_db_message (
+	message_id serial primary key not null,
+	socket_id varchar(40),
+	content varchar(100)
+)

@@ -1,14 +1,14 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity()
+@Entity({ name: 'tbl_db_message'})
 export class Message {
 
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn({ name: 'message_id'})
     messageId: number;
 
-    @Column()
+    @Column({ name: 'socket_id'})
     socketId: string;
 
-    @Column()
+    @Column({ name: 'content'})
     content: string;
 }
