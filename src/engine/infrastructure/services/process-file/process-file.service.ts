@@ -21,10 +21,8 @@ export class ProcessFileService {
         }
     }
 
-
     createNewTask(taskCreatorDomain: TaskCreatorDomain) {
-        return null;
-        //return this.taskRepositoy.saveNewTask(taskCreatorDomain);
+        return this.taskRepositoy.saveNewTask(taskCreatorDomain);
     }
 
 
